@@ -27,7 +27,7 @@ def main():
     pincushion_1 = cv.resize(pincushion_1, (1926, 1216))
 
     pincushion_2 = cv.imread(
-        r"00.jpg", 1)
+        r"pincushion_2.png", 1)
     pincushion_2 = cv.resize(pincushion_2, (1926, 1216))
 
     undistort_1 = cv.undistort(
