@@ -43,9 +43,11 @@ def main():
 
     cv.imshow("pinchusion_1", pincushion_1)
     cv.imshow("undistort_1", undistort_1)
+    cv.imwrite("undistort_1.png", undistort_1)
 
     cv.imshow("pinchusion_2", pincushion_2)
     cv.imshow("undistort_2", undistort_2)
+    cv.imwrite("undistort_2.png", undistort_2)
 
     cv.waitKey(-1)
 
