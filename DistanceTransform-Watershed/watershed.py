@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 
 def main():
-    img = cv.imread('coins.png')
+    img = cv.imread('water_coins.jpg')
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     ret, thresh = cv.threshold(
         gray, 0, 255, cv.THRESH_BINARY_INV+cv.THRESH_OTSU)
@@ -15,9 +15,13 @@ def main():
     sure_bg = cv.dilate(opening, kernel, iterations=3)
 
     dist_transform = cv.distanceTransform(opening, cv.DIST_L2, 5)
+    plt.imshow(dist_transform)
+
     ret, sure_fg = cv.threshold(
         dist_transform, 0.7*dist_transform.max(), 255, 0)
 
+    cv.imshow("sure_fg",sure_fg)
+    cv.imshow("th",opening)
     sure_fg = np.uint8(sure_fg)
     unknown = cv.subtract(sure_bg, sure_fg)
 
@@ -30,6 +34,9 @@ def main():
     markers = cv.watershed(img, markers)
     img[markers == -1] = [255, 0, 0]
 
+    cv.imshow("img",img)
+    plt.show()
+    cv.waitKey(-1)
 
 if __name__ == "__main__":
     main()
